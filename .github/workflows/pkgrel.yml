@@ -39,10 +39,11 @@ jobs:
              apt source    -y openldap
     - name: Customize Source Package
       run: |
-        P="$(ls -d openldap-*+dfsg)"
+        P="$(ls -d openldap-*+dfsg/)"
 
-        echo --enable-sql    >> \
-        "$P/debian/configure.options"
+        tee -a                                     \
+                   "$P/debian/configure.options" < \
+          repo/.github/config/configure.options
 
         awk -f repo/.github/scripts/control.awk \
         "$P/debian/control"   > \
@@ -56,12 +57,12 @@ jobs:
 
     - name: Run dch
       run: |
-        P="$(ls -d openldap-*+dfsg)"
+        P="$(ls -d openldap-*+dfsg/)"
         cd "$P"                         && \
         dch -n back-sql
     - name: Run debuild
       run: |
-        P="$(ls -d openldap-*+dfsg)"
+        P="$(ls -d openldap-*+dfsg/)"
         cd "$P"                         && \
         DEB_BUILD_OPTIONS='ccache nocheck' \
         DEB_CONFIGURE_EXTRA_FLAGS=''       \
