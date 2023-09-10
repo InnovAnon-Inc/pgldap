@@ -40,7 +40,7 @@ jobs:
 
     - name: Configure Environment
       run: |
-        echo "P=$(ls -d ooenldap-*+dfsg/)" >> $GITHUV_ENV
+        echo "P=$(ls -d openldap-*+dfsg/)" >> $GITHUV_ENV
 
     - name: Customize Source Package
       run: |
