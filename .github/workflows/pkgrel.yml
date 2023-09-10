@@ -40,7 +40,10 @@ jobs:
 
     - name: Configure Environment
       run: |
-        echo "P=$(ls -d openldap-*+dfsg/)" >> $GITHUV_ENV
+        P="$(ls -d openldap-*+dfsg/)"
+        echo "P=$P" >> $GITHUB_ENV
+        [[ -d "$P" ]]
+
 
     - name: Customize Source Package
       run: |
