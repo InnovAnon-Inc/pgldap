@@ -59,9 +59,20 @@ jobs:
       run: |
         P="$(ls -d openldap-*+dfsg/)"
         cd "$P"                         && \
-        dch -n back-sql
+        dch -n back-sql --nmu
+
+    - name: Configure GPG Key
+      run: |
+        echo -n "$GPG_SIGNING_KEY" | gpg --import
+        #echo -n "$GPG_SIGNING_KEY" | base64 --decode | gpg --import
+      env:
+        GPG_SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
+
+    # TODO source package
+    # TODO signed packages
     - name: Run debuild
       run: |
+        #-kD81CD473833607F8BEF1ECAA60F9747587CBBCD8 \
         P="$(ls -d openldap-*+dfsg/)"
         cd "$P"                         && \
         DEB_BUILD_OPTIONS='ccache nocheck' \
@@ -69,7 +80,7 @@ jobs:
         DFSG_NONFREE=true                  \
         debuild                            \
           --no-lintian                     \
-          -b -i -uc -us
+          -i
 
     #- name: sign installation package
     #  working-directory: ${{ github.workspace }}
@@ -91,4 +102,57 @@ jobs:
           slapd_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
           libldap-*.*-*_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
           libldap-common_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
+
+    # TODO trigger build of ppa
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    #
+    
+    - uses: passeidireto/trigger-external-workflow-action@main
+      env:
+        PAYLOAD_AUTHOR: ${{ github.author }}
+        PAYLOAD_REVISION: "3"
+      with:
+        repository: InnovAnon-Inc/ppa
+        event: update
+        github_pat: ${{ secrets.pat_with_access }}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # TODO new image
+    - name: Authenticate with Docker Hub
+      run: |
+        docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
+      env:
+        DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+        DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+
+    - name: Build Docker Image
+      run: |
+        docker build -t "innovanon/pgldap:$TEAMHACK_VERSION" .
+      env:
+        TEAMHACK_VERSION: ${{ steps.tag_version.outputs.new_tag }}
+
+    - name: Deploy Docker Image
+      run: |
+        docker push     "innovanon/pgldap:$TEAMHACK_VERSION"
+      env:
+        TEAMHACK_VERSION: ${{ steps.tag_version.outputs.new_tag }}
 
