@@ -112,7 +112,8 @@ jobs:
       with:
         repository: InnovAnon-Inc/ppa
         event: update
-        github_pat: ${{ secrets.pat_with_access }}
+        github_pat: ${{ secrets.GITHUB_TOKEN }}
+        #github_pat: ${{ secrets.pat_with_access }}
 
     # TODO new image
     - name: Authenticate with Docker Hub
