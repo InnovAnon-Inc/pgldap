@@ -104,18 +104,8 @@ jobs:
           libldap-common_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
 
     # TODO trigger build of ppa
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    #
-    
-    - uses: passeidireto/trigger-external-workflow-action@main
+    - name: Notify PPA
+      uses: passeidireto/trigger-external-workflow-action@main
       env:
         PAYLOAD_AUTHOR: ${{ github.author }}
         PAYLOAD_REVISION: "3"
@@ -123,18 +113,6 @@ jobs:
         repository: InnovAnon-Inc/ppa
         event: update
         github_pat: ${{ secrets.pat_with_access }}
-
-
-
-
-
-
-
-
-
-
-
-
 
     # TODO new image
     - name: Authenticate with Docker Hub
