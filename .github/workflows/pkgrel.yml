@@ -115,7 +115,7 @@ jobs:
         PAYLOAD_REVISION: "3"
       with:
         repository: InnovAnon-Inc/ppa
-        event: update
+        event: push
         github_pat: ${{ secrets.GITHUB_TOKEN }}
         #github_pat: ${{ secrets.pat_with_access }}
 
