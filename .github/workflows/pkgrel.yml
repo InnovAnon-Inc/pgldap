@@ -112,12 +112,12 @@ jobs:
         generate_release_notes: true
         files: |
           dist/*
-          #slapd_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
-          #libldap-*.*-*_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
-          #libldap-common_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
-          #slapd-contrib_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
-          #slapd-smbk5pwd_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
-          #ldap-utils_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
+    #slapd_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
+    #libldap-*.*-*_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
+    #libldap-common_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
+    #slapd-contrib_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
+    #slapd-smbk5pwd_*.*.*+dfsg-*ubuntu*.*.*.*_all.deb
+    #ldap-utils_*.*.*+dfsg-*ubuntu*.*.*.*_amd64.deb
 
     # TODO trigger build of ppa
     - name: Notify PPA
