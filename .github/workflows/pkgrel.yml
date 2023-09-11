@@ -41,17 +41,18 @@ jobs:
     - name: Configure Environment
       run: |
         P="$(ls -d openldap-*+dfsg/)"
-        echo "P=$P" >> $GITHUB_ENV
+        echo "P=$P"                           >> $GITHUB_ENV
         [[ -d "$P" ]]
+        echo 'DEBEMAIL=InnovAnon-Inc@gmx.com' >> $GITHUB_ENV
 
     - name: Customize Source Package
       run: |
-        tee -a                                     \
-                   "$P/debian/configure.options" < \
-          repo/.github/config/configure.options
+        tee -a                                   \
+                 "$P/debian/configure.options" < \
+        repo/.github/config/configure.options
 
         awk -f repo/.github/scripts/control.awk \
-        "$P/debian/control"   > \
+        "$P/debian/control"                   > \
         "$P/debian/control.new"
         mv -v                   \
         "$P/debian/control.new" \
