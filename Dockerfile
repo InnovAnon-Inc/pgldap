@@ -10,7 +10,7 @@ COPY dist/ /tmp/dist/
 RUN rm -v                          \
     /tmp/dist/ldap-utils_*.deb     \
     /tmp/dist/libldap*-dev_*.deb   \
-RUN apt update                     \
+&&  apt update                     \
 &&  apt full-upgrade -y            \
     --no-install-recommends        \
 &&  apt install      -y            \
