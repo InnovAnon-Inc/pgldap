@@ -67,12 +67,22 @@ jobs:
     #    github_token: ${{ secrets.GITHUB_TOKEN }}
     #    dry_run: true
     #    tag_prefix:
+    
+    - name: Remove original source directory
+      run: |
+        T="$(ls openldap_*.orig.tar.*)"
+        rm -v "$T"
+        tar acpf "$T"           \
+          --exclude-vcs         \
+          --exclude-vcs-ignores \
+          "$P"
+        [[ -f "$T" ]]
 
     - name: Run dch
       working-directory: ${{ env.P }}
       run: |
-        dch -n back-sql
-        #dch -n back-sql --nmu
+        #dch -n back-sql
+        dch -n back-sql --nmu
         #dch -n back-sql --package pgldap --version "$TEAMHACK_VERSION"
       #env:
       #  TEAMHACK_VERSION: ${{ steps.tag_version_dryrun.outputs.new_tag }}
