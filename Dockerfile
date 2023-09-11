@@ -24,9 +24,9 @@ RUN rm -v                          \
 &&  rm -rf  /etc/ldap/slapd.d      \
 &&  rm -rfv /tmp/dist/
 
-RUN sed -i                                                     \
-    's@^SLAPD_CONF=.*$@SLAPD_CONF=/etc/ldap/certs/slapd.conf@' \
-    /etc/default/slapd
+#RUN sed -i                                                     \
+#    's@^SLAPD_CONF=.*$@SLAPD_CONF=/etc/ldap/certs/slapd.conf@' \
+#    /etc/default/slapd
 COPY etc/apparmor.d/local/usr.sbin.slapd \
     /etc/apparmor.d/local/usr.sbin.slapd
 
@@ -38,8 +38,11 @@ VOLUME ["/etc/ldap/certs"]
 # /root/.odbc.ini
 VOLUME ["/root"]
 
-ENTRYPOINT [             \
-  "/usr/sbin/slapd",     \
-  "-d", "9"              \
+ENTRYPOINT [              \
+  "/usr/sbin/slapd",      \
+  "-F", "/etc/ldap/certs" \
 ]
 
+CMD [                     \
+  "-d", "9"               \
+]

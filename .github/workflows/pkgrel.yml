@@ -151,6 +151,7 @@ jobs:
     - name: Deploy Docker Image
       run: |
         docker push     "innovanon/pgldap:$TEAMHACK_VERSION"
+        docker push      innovanon/pgldap
       env:
         TEAMHACK_VERSION: ${{ steps.tag_version.outputs.new_tag }}
 
