@@ -20,9 +20,9 @@ RUN rm -v                          \
 &&  apt autoremove   -y            \
     --purge                        \
 &&  apt clean        -y            \
-&&  rm -rf /var/lib/apt/lists/*    \
-&&  rm -rf /etc/ldap/slapd.d       \
-&&  rm -v  /tmp/dist/
+&&  rm -rf  /var/lib/apt/lists/*   \
+&&  rm -rf  /etc/ldap/slapd.d      \
+&&  rm -rfv /tmp/dist/
 
 RUN sed -i                                                     \
     's@^SLAPD_CONF=.*$@SLAPD_CONF=/etc/ldap/certs/slapd.conf@' \
