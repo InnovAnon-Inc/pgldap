@@ -21,7 +21,7 @@ RUN apt update                     \
 &&  apt clean        -y            \
 &&  rm -rf /var/lib/apt/lists/*    \
 &&  rm -rf /etc/ldap/slapd.d       \
-&&  rm -v  /tmp/dist/*.deb
+&&  rm -v  /tmp/dist/
 
 #     /tmp/slapd_2.5.16+dfsg-0ubuntu0.22.04.2_amd64.deb                \
 #     /tmp/libldap-2.5-0_2.5.16+dfsg-0ubuntu0.22.04.2_amd64.deb        \

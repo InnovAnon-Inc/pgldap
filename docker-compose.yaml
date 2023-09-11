@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  slapd:
+    image:           innovanon/pgldap
+    container_name:  slapd
+    ports:
+      - "0.0.0.0:389:389"
+      - "0.0.0.0:686:686"
+    volumes:
+      - slapd-certs:/etc/ldap/certs:ro
+      - slapd-root:/root:ro
+    #  - syslog-client:/etc/rsyslog.d:ro
+    restart:         always
+    #depends_on:
+    #  syslog:
+    #    condition:   service_started
+
+volumes:
+  slapd-certs:
+  slapd-root:
+  syslog-client:
+
+
