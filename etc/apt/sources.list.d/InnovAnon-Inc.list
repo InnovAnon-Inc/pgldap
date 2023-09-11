@@ -1,0 +1,2 @@
+deb [arch=all signed-by=/etc/apt/keyrings/InnovAnon-Inc.asc] https://InnovAnon-Inc.github.io/ppa/deb stable main
+

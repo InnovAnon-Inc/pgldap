@@ -1,0 +1,9 @@
+# Let slapd access odbc config files, and (for MySQL) the mysql unix socket.
+# https://ubuntuforums.org/showthread.php?p=8248430#post8248430
+/etc/odbc.ini r,
+/etc/odbcinst.ini r,
+#/var/run/mysqld/mysqld.sock w,
+EOF
+systemctl restart apparmor
+systemctl restart slapd
+
