@@ -139,7 +139,7 @@ jobs:
         PAYLOAD_REVISION: "3"
       with:
         repository: InnovAnon-Inc/ppa
-        event: doc_update
+        event: pgldap_update
         #github_pat: ${{ secrets.GITHUB_TOKEN }}
         github_pat: ${{ secrets.REPO_PAT }}
         #github_pat: ${{ secrets.pat_with_access }}
