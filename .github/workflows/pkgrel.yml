@@ -3,7 +3,6 @@ permissions:
   contents: write
 
 on:
-  workflow_dispatch:
   schedule:
     - cron: '* * 1 * *'
   #[workflow_call]
@@ -11,6 +10,7 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  workflow_dispatch:
 
 
 jobs:
@@ -43,7 +43,6 @@ jobs:
         P="$(ls -d openldap-*+dfsg/)"
         echo "P=$P" >> $GITHUB_ENV
         [[ -d "$P" ]]
-
 
     - name: Customize Source Package
       run: |
@@ -116,7 +115,8 @@ jobs:
       with:
         repository: InnovAnon-Inc/ppa
         event: doc_update
-        github_pat: ${{ secrets.GITHUB_TOKEN }}
+        #github_pat: ${{ secrets.GITHUB_TOKEN }}
+        github_pat: ${{ secrets.REPO_PAT }}
         #github_pat: ${{ secrets.pat_with_access }}
 
     # TODO new image
