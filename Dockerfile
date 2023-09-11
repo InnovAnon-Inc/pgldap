@@ -30,6 +30,10 @@ RUN rm -v                          \
 COPY etc/apparmor.d/local/usr.sbin.slapd \
     /etc/apparmor.d/local/usr.sbin.slapd
 
+RUN ln -sv /root/.odbc.ini /etc/odbc.ini \
+&&  ln -sv /etc/ldap/certs/slapd.conf    \
+           /etc/ldap/slapd.conf
+
 # /etc/ldap/certs/slapd.conf
 # /etc/ldap/certs/LDAP.chain.crt
 # /etc/ldap/certs/LDAP.crt
@@ -38,9 +42,9 @@ VOLUME ["/etc/ldap/certs"]
 # /root/.odbc.ini
 VOLUME ["/root"]
 
+  #"-f", "/etc/ldap/certs/slapd.conf" \
 ENTRYPOINT [                         \
-  "/usr/sbin/slapd",                 \
-  "-f", "/etc/ldap/certs/slapd.conf" \
+  "/usr/sbin/slapd"                  \
 ]
 
 CMD [                                \
