@@ -38,11 +38,13 @@ VOLUME ["/etc/ldap/certs"]
 # /root/.odbc.ini
 VOLUME ["/root"]
 
-ENTRYPOINT [              \
-  "/usr/sbin/slapd",      \
-  "-F", "/etc/ldap/certs" \
+ENTRYPOINT [                         \
+  "/usr/sbin/slapd",                 \
+  "-f", "/etc/ldap/certs/slapd.conf" \
 ]
 
-CMD [                     \
-  "-d", "9"               \
+CMD [                                \
+  "-4",                              \
+  "-s", "3",                         \
+  "-d", "9"                          \
 ]
