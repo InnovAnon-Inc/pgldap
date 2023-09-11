@@ -9,7 +9,7 @@ services:
     volumes:
       - slapd-certs:/etc/ldap/certs:ro
       - slapd-root:/root:ro
-    #  - syslog-client:/etc/rsyslog.d:ro
+      - syslog-client:/etc/rsyslog.d:ro
     restart:         always
     #depends_on:
     #  syslog:
