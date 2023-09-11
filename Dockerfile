@@ -30,9 +30,9 @@ RUN rm -v                          \
 COPY etc/apparmor.d/local/usr.sbin.slapd \
     /etc/apparmor.d/local/usr.sbin.slapd
 
-RUN ln -sv /root/.odbc.ini /etc/odbc.ini \
-&&  ln -sv /etc/ldap/certs/slapd.conf    \
-           /etc/ldap/slapd.conf
+RUN ln -fsv /root/.odbc.ini /etc/odbc.ini \
+&&  ln -fsv /etc/ldap/certs/slapd.conf    \
+            /etc/ldap/slapd.conf
 
 # /etc/ldap/certs/slapd.conf
 # /etc/ldap/certs/LDAP.chain.crt
