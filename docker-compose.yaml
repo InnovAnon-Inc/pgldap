@@ -1,4 +1,6 @@
 version: '3.8'
+#include: 
+#  - ../pgrsyslog-client/docker-compose.yaml
 services:
   slapd:
     image:           innovanon/pgldap
@@ -11,13 +13,11 @@ services:
       - slapd-root:/root:ro
       - syslog-client:/etc/rsyslog.d:ro
     restart:         always
-    #depends_on:
-    #  syslog:
-    #    condition:   service_started
+    depends_on:
+      syslog:
+        condition:   service_started
 
 volumes:
   slapd-certs:
   slapd-root:
-  syslog-client:
-
 
