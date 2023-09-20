@@ -16,8 +16,14 @@ services:
     depends_on:
       syslog:
         condition:   service_started
+      postgres:
+        condition:   service_healthy
 
 volumes:
   slapd-certs:
+    external: true
   slapd-root:
+    external: true
+  #syslog-client:
+  #  external: true
 
