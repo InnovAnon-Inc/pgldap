@@ -1,4 +1,5 @@
 etc/apt/apt.conf.d/00aptproxy
 etc/ldap/slapd.conf
 etc/odbc.ini
+init/
 
